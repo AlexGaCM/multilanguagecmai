@@ -55,7 +55,10 @@ export default function DialogButton(props) {
             <div className='float-right flex gap-x-2 mt-10 mr-6'>
               <button
                 className='border-slate-400 hover:bg-slate-400 hover:text-white border-2 rounded-md h-10 w-24'
-                onClick={() => setOpen(false)}
+                onClick={() => {
+                  setPreviewColor(color)
+                  setOpen(false)
+                }}
               >
                 <Translate placeholder='dialog_close' />
               </button>
