@@ -5,8 +5,8 @@ import useStore from '../storage/storage'
 export default function DialogButton(props) {
 
   const [ open, setOpen ] = useState(false)
-  const [ previewColor, setPreviewColor ] = useState("text-black")
   const { color, title, setColor, setTitle } = useStore()
+  const [ previewColor, setPreviewColor ] = useState(color)
   const [ content, setContent ] = useState(title)
 
   return (
