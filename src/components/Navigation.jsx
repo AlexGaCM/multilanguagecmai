@@ -19,18 +19,6 @@ export default function Navigation() {
               <li onClick={() => router.push('/products')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>
                 <span><Translate placeholder='module_name_products' /></span>
               </li>
-              {/*<li onClick={() => router.push('/emails')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>*/}
-              {/*  <span><Translate placeholder='module_name_emails' /></span>*/}
-              {/*</li>*/}
-              {/*<li onClick={() => router.push('/social-media')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>*/}
-              {/*  <span><Translate placeholder='module_name_social_media_posts' /></span>*/}
-              {/*</li>*/}
-              {/*<li onClick={() => router.push('/blog-posts')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>*/}
-              {/*  <span><Translate placeholder='module_name_blogposts' /></span>*/}
-              {/*</li>*/}
-              {/*<li onClick={() => router.push('/landing-pages')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>*/}
-              {/*  <span><Translate placeholder='module_name_landing_pages' /></span>*/}
-              {/*</li>*/}
               <li onClick={() => router.push('/online-ads')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>
                 <span><Translate placeholder='module_name_online_ads' /></span>
               </li>

@@ -6,5 +6,10 @@
   "module_name_social_media_posts": "Social Media Posts",
   "module_name_blogposts": "Blogposts",
   "module_name_landing_pages": "Landing Pages",
-  "module_name_online_ads": "Annonces en ligne"
+  "module_name_online_ads": "Annonces en ligne",
+  "dialog_open": "\nDéplier Dialogue",
+  "dialog_close": "Proche",
+  "dialog_submit": "Envoyer",
+  "dialog_placeholder": "Entrez du texte",
+  "dialog_preview": "Aperçu:"
 }
