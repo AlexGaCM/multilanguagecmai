@@ -5,14 +5,15 @@ import DialogButton from '../components/DialogButton'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 export async function getServerSideProps({ locale }) {
+
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common'], null )),
     }
   }
 }
 
-export default function Home() {
+export default function Home(_props) {
 
   return (
     <>
