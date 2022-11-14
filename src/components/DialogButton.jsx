@@ -65,8 +65,7 @@ export default function DialogButton(props) {
               <button
                 className='bg-emerald-500 hover:bg-emerald-400 text-white rounded-md h-10 w-24'
                 onClick={() => {
-                  setTitle(content);
-                  console.log("color:", color)
+                  setTitle(content)
                   setColor(previewColor)
                   setOpen(false)
                 }}

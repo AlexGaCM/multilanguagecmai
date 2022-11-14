@@ -2,6 +2,15 @@ import Navigation from '../components/Navigation'
 import Topbar from '../components/Topbar'
 import Translate from "../components/Translation";
 import DialogButton from '../components/DialogButton'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export async function getServerSideProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    }
+  }
+}
 
 export default function Home() {
 
@@ -21,3 +30,4 @@ export default function Home() {
     </>
   )
 }
+
