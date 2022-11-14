@@ -1,6 +1,16 @@
 import Navigation from '../components/Navigation'
 import Topbar from '../components/Topbar'
 import Translate from '../components/Translation'
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export async function getServerSideProps({ locale }) {
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'], null )),
+    }
+  }
+}
 
 export default function OnlineAds() {
 

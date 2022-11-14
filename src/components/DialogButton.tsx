@@ -1,8 +1,13 @@
 import { useState } from "react";
-import Translate from '../components/Translation'
+import Translate from './Translation'
 import useStore from '../storage/storage'
 
-export default function DialogButton(props) {
+type Props = {
+  buttonClassName: string
+  dialogClassName: string
+}
+
+export default function DialogButton({ buttonClassName, dialogClassName }: Props) {
 
   const [ open, setOpen ] = useState(false)
   const { color, title, setColor, setTitle } = useStore()
@@ -15,14 +20,14 @@ export default function DialogButton(props) {
         <h1 className={'text-3xl mt-16 ' + color}>
           {title}
         </h1>
-        <button className={props.buttonClassName} onClick={() => setOpen(!open)}>
+        <button className={buttonClassName} onClick={() => setOpen(!open)}>
           <Translate placeholder='dialog_open' />
         </button>
       </div>
-      <div className={ open ? 'absolute h-screen w-screen bg-slate-900 opacity-50 top-0' : 'hidden'}></div>
-      <div className={ open ? 'absolute h-screen w-screen top-0 backdrop-blur-sm' : 'hidden'}>
+      <div className={ open ? 'absolute h-screen w-screen bg-slate-900 opacity-50 top-0' : 'hidden' }></div>
+      <div className={ open ? 'absolute h-screen w-screen top-0 backdrop-blur-sm' : 'hidden' }>
         <div className='flex desktop:mt-[15%] laptop:mt-[10%] justify-center place-content-center'>
-          <div className={ open ? props.dialogClassName : 'hidden'}>
+          <div className={ open ? dialogClassName : 'hidden' }>
             <div className="bg-blue-500 h-12 w-full">
               <button className='float-right h-full w-12 text-white' onClick={() => setOpen(false)}>
                 X

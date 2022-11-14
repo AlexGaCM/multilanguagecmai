@@ -26,7 +26,7 @@ export default function LanguageSwitch() {
       <div className='pt-2'>
         {languages.map(({ code, name, country_code }, index) =>
           <div
-            key={index}å
+            key={index}
             className={'py text-center hidden hover:bg-slate-600 hover:text-white group-hover:block hidden'}
             onClick={() => i18n.changeLanguage(code)}
           >

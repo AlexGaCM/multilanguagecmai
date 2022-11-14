@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import Translate from '../components/Translation'
+import Translate from './Translation'
 
 export default function Navigation() {
   const router = useRouter()

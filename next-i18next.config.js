@@ -7,5 +7,4 @@ module.exports = {
     defaultLocale: 'de',
     locales: ['de', 'en', 'fr'],
   },
-  // ns: ['common', 'translation']
 };
