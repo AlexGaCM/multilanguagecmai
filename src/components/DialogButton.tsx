@@ -7,9 +7,20 @@ type Props = {
   dialogClassName: string
 }
 
+const callAPI = async () => {
+  try {
+    const res = await fetch('./api')
+    const data = await res.json()
+    console.log(data.selected_color)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
 export default function DialogButton({ buttonClassName, dialogClassName }: Props) {
 
   const [ open, setOpen ] = useState(false)
+  // @ts-ignore
   const { color, title, setColor, setTitle } = useStore()
   const [ previewColor, setPreviewColor ] = useState(color)
   const [ content, setContent ] = useState(title)
@@ -73,6 +84,7 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
                   setTitle(content)
                   setColor(previewColor)
                   setOpen(false)
+                  callAPI()
                 }}
               >
                 <Translate placeholder='dialog_submit' />
