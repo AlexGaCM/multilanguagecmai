@@ -12,6 +12,7 @@ const useStore = create<Storage>(set => ({
   title: "Title",
   setColor: (color) => set({ color }),
   setTitle: (title) => set({ title }),
+
 }))
 
 export default useStore

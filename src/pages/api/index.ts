@@ -9,6 +9,9 @@ enum Colors {
 }
 
 export default (req:NextApiRequest, res:NextApiResponse) => {
+
+  if (req.body === '') throw Error("No Color passed")
+
   const body = JSON.parse(req.body)
 
   const ColorConfig = {
@@ -29,5 +32,5 @@ export default (req:NextApiRequest, res:NextApiResponse) => {
     }
   }
 
-  res.status(200).json({ selected_color: ColorConfig[body.color].message  })
+  res.status(200).json({ selected_color: ColorConfig[body.color].message })
 }

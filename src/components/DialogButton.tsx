@@ -7,10 +7,17 @@ type Props = {
   dialogClassName: string
 }
 
-const postData = (selectedColor) => {
-  const data = { color: selectedColor }
+export default function DialogButton({ buttonClassName, dialogClassName }: Props) {
 
-  return fetch('./api', {
+  const [ open, setOpen ] = useState(false)
+  const { color, title, setColor, setTitle } = useStore()
+  const [ previewColor, setPreviewColor ] = useState(color)
+  const [ content, setContent ] = useState(title)
+
+  const postData = (selectedColor) => {
+    const data = { color: selectedColor }
+
+    return fetch('./api', {
       method: 'POST',
       body: JSON.stringify(data),
     })
@@ -19,13 +26,6 @@ const postData = (selectedColor) => {
         console.log('ERROR:', error)
       })
   }
-
-export default function DialogButton({ buttonClassName, dialogClassName }: Props) {
-
-  const [ open, setOpen ] = useState(false)
-  const { color, title, setColor, setTitle } = useStore()
-  const [ previewColor, setPreviewColor ] = useState(color)
-  const [ content, setContent ] = useState(title)
 
   return (
     <>
@@ -97,6 +97,9 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
             </div>
           </div>
         </div>
+      </div>
+      <div className={color !== 'text-black' ? `laptop:ml-[300px] desktop:ml-[340px] text-3xl mt-8` : ''}>
+        Gewählte Farbe ist {color}
       </div>
     </>
   )
