@@ -7,13 +7,13 @@ type Props = {
   dialogClassName: string
 }
 
-const callAPI = async () => {
+const getColorFromAPI = async (color) => {
   try {
     const res = await fetch('./api')
     const data = await res.json()
-    console.log(data.selected_color)
-  } catch (err) {
-    console.log(err)
+    console.log(data.selected_color + color)
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -84,7 +84,7 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
                   setTitle(content)
                   setColor(previewColor)
                   setOpen(false)
-                  callAPI()
+                  getColorFromAPI(previewColor)
                 }}
               >
                 <Translate placeholder='dialog_submit' />

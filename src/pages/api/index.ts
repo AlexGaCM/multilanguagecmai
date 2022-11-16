@@ -1,8 +1,8 @@
-import useStore from '../../storage/storage'
+// import useStore from '../../storage/storage'
+import type { NextApiRequest, NextApiResponse } from "next";
 
 // const { color } = useStore()
-const color = "blue"
 
-export default function handler(req, res) {
-  res.status(200).json({ selected_color: "you selected color " + color })
+export default (req:NextApiRequest, res:NextApiResponse) => {
+  res.status(200).json({ selected_color: "you selected color "})
 }
