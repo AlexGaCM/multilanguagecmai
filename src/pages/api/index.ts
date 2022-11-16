@@ -1,26 +1,33 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
+enum Colors {
+  blue = "text-blue-500",
+  red = "text-red-600",
+  green = "text-emerald-500",
+  pink = "text-pink-400",
+  black = "text-black"
+}
+
 export default (req:NextApiRequest, res:NextApiResponse) => {
   const body = JSON.parse(req.body)
 
-  let color
-
-  switch (body.color) {
-    case 'text-blue-500':
-      color = "blue"
-      break
-    case 'text-red-600':
-      color = "red"
-      break
-    case 'text-emerald-500':
-      color = "green"
-      break
-    case 'text-pink-400':
-      color = "pink"
-      break
-    default:
-      color = "black"
+  const ColorConfig = {
+    [Colors.blue]: {
+      message: "Die gewählte Farbe ist Blau"
+    },
+    [Colors.red]: {
+      message: "Du hast Rot gewählt!"
+    },
+    [Colors.green]: {
+      message: "Farbe: Grün"
+    },
+    [Colors.pink]: {
+      message: "Du hast die Farbe Pink gewählt"
+    },
+    [Colors.black]: {
+      message: "Keine Farbe gewählt"
     }
+  }
 
-  res.status(200).json({ selected_color: `your selected color: ${color}`  })
+  res.status(200).json({ selected_color: ColorConfig[body.color].message  })
 }

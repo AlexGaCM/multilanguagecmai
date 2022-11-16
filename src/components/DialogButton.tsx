@@ -18,12 +18,11 @@ const postData = (selectedColor) => {
       .catch((error) => {
         console.log('ERROR:', error)
       })
-}
+  }
 
 export default function DialogButton({ buttonClassName, dialogClassName }: Props) {
 
   const [ open, setOpen ] = useState(false)
-  // @ts-ignore
   const { color, title, setColor, setTitle } = useStore()
   const [ previewColor, setPreviewColor ] = useState(color)
   const [ content, setContent ] = useState(title)
