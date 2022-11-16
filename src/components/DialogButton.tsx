@@ -10,7 +10,7 @@ type Props = {
 export default function DialogButton({ buttonClassName, dialogClassName }: Props) {
 
   const [ open, setOpen ] = useState(false)
-  const { color, title, setColor, setTitle } = useStore()
+  const { color, title, colorName, setColor, setTitle, setColorName } = useStore()
   const [ previewColor, setPreviewColor ] = useState(color)
   const [ content, setContent ] = useState(title)
 
@@ -56,10 +56,22 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
             </form>
             <div className='flex'>
               <div className='ml-8 mt-8 gap-x-4 flex'>
-                <button className='bg-blue-600 hover:bg-blue-500 w-28 h-28 rounded-md' onClick={() => setPreviewColor("text-blue-500")}></button>
-                <button className='bg-red-600 hover:bg-red-500 w-28 h-28 rounded-md' onClick={() => setPreviewColor("text-red-600")}></button>
-                <button className='bg-emerald-500 hover:bg-emerald-400 w-28 h-28 rounded-md' onClick={() => setPreviewColor("text-emerald-500")}></button>
-                <button className='bg-pink-400 hover:bg-pink-300 w-28 h-28 rounded-md' onClick={() => setPreviewColor("text-pink-400")}></button>
+                <button className='bg-blue-600 hover:bg-blue-500 w-28 h-28 rounded-md' onClick={() => {
+                  setPreviewColor("text-blue-500")
+                  setColorName("Blau")
+                }}></button>
+                <button className='bg-red-600 hover:bg-red-500 w-28 h-28 rounded-md' onClick={() => {
+                  setPreviewColor("text-red-600")
+                  setColorName("Rot")
+                }}></button>
+                <button className='bg-emerald-500 hover:bg-emerald-400 w-28 h-28 rounded-md' onClick={() => {
+                  setPreviewColor("text-emerald-500")
+                  setColorName("Grün")
+                }}></button>
+                <button className='bg-pink-400 hover:bg-pink-300 w-28 h-28 rounded-md' onClick={() => {
+                  setPreviewColor("text-pink-400")
+                  setColorName("Pink")
+                }}></button>
               </div>
               <div className='ml-12 mt-4'>
                 <div>
@@ -99,7 +111,7 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
         </div>
       </div>
       <div className={color !== 'text-black' ? `laptop:ml-[300px] desktop:ml-[340px] text-3xl mt-8` : ''}>
-        Gewählte Farbe ist {color}
+        Gewählte Farbe ist {colorName}
       </div>
     </>
   )
