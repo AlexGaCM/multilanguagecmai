@@ -7,10 +7,10 @@ type Props = {
   dialogClassName: string
 }
 
-const postData = async (selectedColor) => {
+const postData = (selectedColor) => {
   const data = { color: selectedColor }
 
-  const res = fetch('./api', {
+  return fetch('./api', {
       method: 'POST',
       body: JSON.stringify(data),
     })
@@ -18,8 +18,6 @@ const postData = async (selectedColor) => {
       .catch((error) => {
         console.log('ERROR:', error)
       })
-
-  return res
 }
 
 export default function DialogButton({ buttonClassName, dialogClassName }: Props) {
@@ -78,6 +76,7 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
                 className='border-slate-400 hover:bg-slate-400 hover:text-white border-2 rounded-md h-10 w-24'
                 onClick={() => {
                   setPreviewColor(color)
+                  setContent(title)
                   setOpen(false)
                 }}
               >
