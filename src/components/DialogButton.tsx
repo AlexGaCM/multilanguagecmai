@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Translate from './Translation'
 import useStore from '../storage/storage'
 
@@ -10,7 +10,7 @@ type Props = {
 export default function DialogButton({ buttonClassName, dialogClassName }: Props) {
 
   const [ open, setOpen ] = useState(false)
-  const { color, title, colorName, setColor, setTitle, setColorName } = useStore()
+  const { color, title, setColor, setTitle } = useStore()
   const [ previewColor, setPreviewColor ] = useState(color)
   const [ content, setContent ] = useState(title)
 
@@ -27,15 +27,30 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
       })
   }
 
-  const callDatabase = () => {
-    return fetch('./api/posts', {
-      method: 'GET',
+  const postColorAndTitle = (color, title) => {
+    const data = [color, title]
+
+    return fetch('./api/postcolor', {
+      method: 'POST',
+      body: JSON.stringify(data)
     })
-      .then((response)  => response.json())
+      .then((response) => response.json())
       .catch((error) => {
         console.log('ERROR:', error)
       })
   }
+
+  useEffect(() => {
+    fetch('./api/postcolor', {
+      method: "GET"
+    }).then((response) => {
+      response.json()
+        .then(data => {
+          setColor(data.color)
+          setTitle(data.title)
+        })
+    })
+  })
 
   return (
     <>
@@ -43,18 +58,15 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
         <h1 className={'text-3xl mt-16 ' + color}>
           {title}
         </h1>
-        <button className={buttonClassName} onClick={() => setOpen(!open)}>
+        <button className={buttonClassName} onClick={() => {
+          setOpen(!open)
+          setContent(title)
+          setPreviewColor(color)
+        }}>
           <Translate placeholder='dialog_open' />
         </button>
       </div>
       <div className='laptop:ml-[300px] desktop:ml-[340px]'>
-        <button className={buttonClassName} onClick={() =>
-          callDatabase()
-          .then((data) => {
-          console.log(data)
-        })}>
-          Call Database
-        </button>
       </div>
       <div className={ open ? 'absolute h-screen w-screen bg-slate-900 opacity-50 top-0' : 'hidden' }></div>
       <div className={ open ? 'absolute h-screen w-screen top-0 backdrop-blur-sm' : 'hidden' }>
@@ -77,19 +89,15 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
               <div className='ml-8 mt-8 gap-x-4 flex'>
                 <button className='bg-blue-600 hover:bg-blue-500 w-28 h-28 rounded-md' onClick={() => {
                   setPreviewColor("text-blue-500")
-                  setColorName("Blau")
                 }}></button>
                 <button className='bg-red-600 hover:bg-red-500 w-28 h-28 rounded-md' onClick={() => {
                   setPreviewColor("text-red-600")
-                  setColorName("Rot")
                 }}></button>
                 <button className='bg-emerald-500 hover:bg-emerald-400 w-28 h-28 rounded-md' onClick={() => {
                   setPreviewColor("text-emerald-500")
-                  setColorName("Grün")
                 }}></button>
                 <button className='bg-pink-400 hover:bg-pink-300 w-28 h-28 rounded-md' onClick={() => {
                   setPreviewColor("text-pink-400")
-                  setColorName("Pink")
                 }}></button>
               </div>
               <div className='ml-12 mt-4'>
@@ -121,6 +129,9 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
                   postData(previewColor).then((data) => {
                     console.log(data.selected_color)
                   })
+                  postColorAndTitle(previewColor, content).then(() => {
+                    console.log("Farbe und Titel in Datenbank hinterlegt")
+                  })
                 }}
               >
                 <Translate placeholder='dialog_submit' />
@@ -128,9 +139,6 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
             </div>
           </div>
         </div>
-      </div>
-      <div className={color !== 'text-black' ? `laptop:ml-[300px] desktop:ml-[340px] text-3xl mt-8` : ''}>
-        Gewählte Farbe ist {colorName}
       </div>
     </>
   )
