@@ -50,6 +50,9 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
           setTitle(data.title)
         })
     })
+      .catch((error) => {
+        console.log("ERROR: ", error)
+      })
   })
 
   return (
