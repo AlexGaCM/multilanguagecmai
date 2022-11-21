@@ -27,6 +27,16 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
       })
   }
 
+  const callDatabase = () => {
+    return fetch('./api/posts', {
+      method: 'GET',
+    })
+      .then((response)  => response.json())
+      .catch((error) => {
+        console.log('ERROR:', error)
+      })
+  }
+
   return (
     <>
       <div className='laptop:ml-[300px] desktop:ml-[340px]'>
@@ -35,6 +45,15 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
         </h1>
         <button className={buttonClassName} onClick={() => setOpen(!open)}>
           <Translate placeholder='dialog_open' />
+        </button>
+      </div>
+      <div className='laptop:ml-[300px] desktop:ml-[340px]'>
+        <button className={buttonClassName} onClick={() =>
+          callDatabase()
+          .then((data) => {
+          console.log(data)
+        })}>
+          Call Database
         </button>
       </div>
       <div className={ open ? 'absolute h-screen w-screen bg-slate-900 opacity-50 top-0' : 'hidden' }></div>
