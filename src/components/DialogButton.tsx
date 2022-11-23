@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Translate from './Translation'
-import useStore from '../storage/storage'
 
 type Props = {
   buttonClassName: string
@@ -10,7 +9,8 @@ type Props = {
 export default function DialogButton({ buttonClassName, dialogClassName }: Props) {
 
   const [ open, setOpen ] = useState(false)
-  const { color, title, setColor, setTitle } = useStore()
+  const [ color, setColor ] = useState("")
+  const [ title, setTitle ] = useState("")
   const [ previewColor, setPreviewColor ] = useState(color)
   const [ content, setContent ] = useState(title)
 
@@ -34,7 +34,6 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
       method: 'POST',
       body: JSON.stringify(data)
     })
-      .then((response) => response.json())
       .catch((error) => {
         console.log('ERROR:', error)
       })

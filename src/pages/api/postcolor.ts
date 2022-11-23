@@ -1,5 +1,6 @@
 import clientPromise from '../../../lib/mongodb'
 import type { NextApiRequest, NextApiResponse } from "next"
+import {ObjectId} from "mongodb";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -7,15 +8,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const dbClient = await clientPromise
   const db = dbClient.db('dialog_button')
   const collection = db.collection('color_and_title')
+  const filter = {_id: new ObjectId('637b52af881c052554e495dc')}
 
   if (method === "POST") {
     const body = JSON.parse(req.body)
-    await collection.updateOne({name: 'color_and_title'}, {$set: {title: body[1], color: body[0]}})
+    await collection.updateOne(filter, {$set: {title: body[1], color: body[0]}})
     res.status(200).end()
   }
 
   if (method === "GET") {
-    const data = await collection.findOne({name: 'color_and_title'})
+    const data = await collection.findOne(filter)
     res.status(200).json(data)
   }
 
