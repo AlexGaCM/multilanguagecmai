@@ -1,6 +1,6 @@
 import clientPromise from '../../../lib/mongodb'
-import type { NextApiRequest, NextApiResponse } from "next"
-import {ObjectId} from "mongodb";
+import type { NextApiRequest, NextApiResponse } from 'next'
+import { ObjectId } from 'mongodb'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -9,6 +9,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const db = dbClient.db('dialog_button')
   const collection = db.collection('color_and_title')
   const filter = {_id: new ObjectId('637b52af881c052554e495dc')}
+
+  console.log("method:", method)
 
   if (method === "POST") {
     const body = JSON.parse(req.body)

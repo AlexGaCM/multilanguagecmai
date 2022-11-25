@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Translate from './Translation'
+import { useQuery } from "react-query";
 
 type Props = {
   buttonClassName: string
@@ -14,17 +15,9 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
   const [ previewColor, setPreviewColor ] = useState(color)
   const [ content, setContent ] = useState(title)
 
-  const postData = (selectedColor) => {
-    const data = { color: selectedColor }
-
-    return fetch('./api', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    })
-      .then((response)  => response.json())
-      .catch((error) => {
-        console.log('ERROR:', error)
-      })
+  const getData = async () => {
+    const res = await fetch('./api/postcolor')
+    return res.json()
   }
 
   const postColorAndTitle = (color, title) => {
@@ -39,19 +32,15 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
       })
   }
 
+  const { data, status } = useQuery('', getData)
+  console.log('data: ', data)
+  console.log('status: ', status)
+
   useEffect(() => {
-    fetch('./api/postcolor', {
-      method: "GET"
-    }).then((response) => {
-      response.json()
-        .then(data => {
-          setColor(data.color)
-          setTitle(data.title)
-        })
-    })
-      .catch((error) => {
-        console.log("ERROR: ", error)
-      })
+    if (status === "success") {
+      setTitle(data.title)
+      setColor(data.color)
+    }
   })
 
   return (
@@ -128,12 +117,7 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
                   setTitle(content)
                   setColor(previewColor)
                   setOpen(false)
-                  postData(previewColor).then((data) => {
-                    console.log(data.selected_color)
-                  })
-                  postColorAndTitle(previewColor, content).then(() => {
-                    console.log("Farbe und Titel in Datenbank hinterlegt")
-                  })
+                  postColorAndTitle(previewColor, content).then(() => console.log("Farbe und Titel in Datenbank hinterlegt"))
                 }}
               >
                 <Translate placeholder='dialog_submit' />
