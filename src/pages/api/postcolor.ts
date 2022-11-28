@@ -10,8 +10,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const collection = db.collection('color_and_title')
   const filter = {_id: new ObjectId('637b52af881c052554e495dc')}
 
-  console.log("method:", method)
-
   if (method === "POST") {
     const body = JSON.parse(req.body)
     await collection.updateOne(filter, {$set: {title: body[1], color: body[0]}})

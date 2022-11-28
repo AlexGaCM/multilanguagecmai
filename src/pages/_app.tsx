@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import { appWithTranslation } from "next-i18next";
 import { QueryClientProvider, QueryClient } from 'react-query'
 
-const queryClient = new QueryClient()
+export const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }) {
   return(

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Translate from './Translation'
-import { useQuery } from "react-query";
+import useTitle from '../hooks/useTitle'
+import { queryClient } from '../pages/_app'
 
 type Props = {
   buttonClassName: string
@@ -14,11 +15,14 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
   const [ title, setTitle ] = useState("")
   const [ previewColor, setPreviewColor ] = useState(color)
   const [ content, setContent ] = useState(title)
+  const [ data ] = useTitle()
 
-  const getData = async () => {
-    const res = await fetch('./api/postcolor')
-    return res.json()
-  }
+  useEffect(() => {
+    if (data) {
+      setTitle(data.title)
+      setColor(data.color)
+    }
+  }, [ data ])
 
   const postColorAndTitle = (color, title) => {
     const data = [color, title]
@@ -32,16 +36,16 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
       })
   }
 
-  const { data, status } = useQuery('', getData)
-  console.log('data: ', data)
-  console.log('status: ', status)
-
-  useEffect(() => {
-    if (status === "success") {
-      setTitle(data.title)
-      setColor(data.color)
-    }
-  })
+  const submitButton = () => {
+    setTitle(content)
+    setColor(previewColor)
+    setOpen(false)
+    postColorAndTitle(previewColor, content)
+      .then(() => console.log("Farbe und Titel in Datenbank hinterlegt"))
+      .then(() => {
+        queryClient.invalidateQueries({ queryKey: ['title'] })
+      })
+  }
 
   return (
     <>
@@ -57,14 +61,12 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
           <Translate placeholder='dialog_open' />
         </button>
       </div>
-      <div className='laptop:ml-[300px] desktop:ml-[340px]'>
-      </div>
       <div className={ open ? 'absolute h-screen w-screen bg-slate-900 opacity-50 top-0' : 'hidden' }></div>
       <div className={ open ? 'absolute h-screen w-screen top-0 backdrop-blur-sm' : 'hidden' }>
         <div className='flex desktop:mt-[15%] laptop:mt-[10%] justify-center place-content-center'>
           <div className={ open ? dialogClassName : 'hidden' }>
             <div className="bg-blue-500 h-12 w-full">
-              <button className='float-right h-full w-12 text-white' onClick={() => setOpen(false)}>
+              <button className='float-right h-full w-12 text-white hover:bg-blue-400' onClick={() => setOpen(false)}>
                 X
               </button>
             </div>
@@ -114,10 +116,7 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
               <button
                 className='bg-emerald-500 hover:bg-emerald-400 text-white rounded-md h-10 w-24'
                 onClick={() => {
-                  setTitle(content)
-                  setColor(previewColor)
-                  setOpen(false)
-                  postColorAndTitle(previewColor, content).then(() => console.log("Farbe und Titel in Datenbank hinterlegt"))
+                  submitButton()
                 }}
               >
                 <Translate placeholder='dialog_submit' />

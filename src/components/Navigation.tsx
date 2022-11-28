@@ -22,10 +22,12 @@ export default function Navigation() {
               <li onClick={() => router.push('/online-ads')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>
                 <span><Translate placeholder='module_name_online_ads' /></span>
               </li>
+              <li onClick={() => router.push('/shop')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>
+                <span><Translate placeholder='module_name_shop' /></span>
+              </li>
             </ul>
           </nav>
         </div>
-
       </div>
     </>
   )

@@ -7,9 +7,12 @@
   "module_name_blogposts": "Blogposts",
   "module_name_landing_pages": "Landing Pages",
   "module_name_online_ads": "Online Ads",
+  "module_name_shop": "Shop",
   "dialog_open": "Open Dialog",
   "dialog_close": "Close",
   "dialog_submit": "Submit",
   "dialog_placeholder": "Enter Text",
-  "dialog_preview": "Preview:"
+  "dialog_preview": "Preview:",
+  "select_dropdown": "Choose a picture",
+  "add_product_button": "Add Product"
 }
