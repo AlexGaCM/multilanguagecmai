@@ -26,7 +26,7 @@ export default function Home(_props) {
       </div>
       <DialogButton
         buttonClassName='mt-8 bg-blue-500 hover:bg-blue-400 text-white rounded py-1 px-2'
-        dialogClassName='absolute w-[1020px] h-[480px] m-1/2 bg-slate-200 drop-shadow-lg'
+        dialogClassName='rounded-xl w-[1020px] h-[480px] m-1/2 bg-slate-200 drop-shadow-lg'
       />
     </>
   )

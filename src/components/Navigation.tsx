@@ -6,7 +6,7 @@ export default function Navigation() {
 
   return(
     <>
-      <div className='flex absolute'>
+      <div className='fixed'>
         <div className='bg-slate-900 h-screen laptop:w-[252px] desktop:w-[288px]'>
           <div className='h-[60px] border-b border-slate-800'>
 

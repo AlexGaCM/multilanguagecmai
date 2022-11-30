@@ -3,6 +3,7 @@ import Topbar from '../components/Topbar'
 import Translate from '../components/Translation'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import AddProductButton from "../components/AddProductButton";
+import ProductList from '../components/ProductList'
 
 export async function getServerSideProps({ locale }) {
 
@@ -24,11 +25,16 @@ export default function Shop() {
           <h1 className='text-3xl'>
             <Translate placeholder='module_name_shop' />
           </h1>
-          <div className='mt-4 bg-slate-200 mr-12 rounded-md p-4'>
+          <div className='mr-12'>
+            <div className='h-12 mt-4 bg-blue-500 rounded-t-xl'></div>
+            <div className='bg-slate-100 border rounded-b-xl p-8'>
+              <ProductList />
+            </div>
           </div>
         </div>
       </div>
       <AddProductButton />
+      <div className='mt-16'></div>
     </>
   )
 }

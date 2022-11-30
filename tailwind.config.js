@@ -5,8 +5,8 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'laptop': '640px',
-      'desktop': '1560px',
+      'laptop': '840px',
+      'desktop': '1660px',
     },
     extend: {},
   },

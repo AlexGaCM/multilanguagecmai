@@ -17,6 +17,8 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
   const [ content, setContent ] = useState(title)
   const [ data ] = useTitle()
 
+  console.log("dialog data:", data)
+
   useEffect(() => {
     if (data) {
       setTitle(data.title)
@@ -65,8 +67,8 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
       <div className={ open ? 'absolute h-screen w-screen top-0 backdrop-blur-sm' : 'hidden' }>
         <div className='flex desktop:mt-[15%] laptop:mt-[10%] justify-center place-content-center'>
           <div className={ open ? dialogClassName : 'hidden' }>
-            <div className="bg-blue-500 h-12 w-full">
-              <button className='float-right h-full w-12 text-white hover:bg-blue-400' onClick={() => setOpen(false)}>
+            <div className="rounded-t-xl bg-blue-500 h-12 w-full">
+              <button className='rounded-tr-xl float-right h-full w-12 text-white hover:bg-blue-400' onClick={() => setOpen(false)}>
                 X
               </button>
             </div>
