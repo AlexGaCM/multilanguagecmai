@@ -1,14 +1,13 @@
 import useStore from '../storage/storage'
 import Translate from './Translation'
 import { useRef } from 'react'
-import useProducts from '../hooks/useProducts'
+import { queryClient } from '../pages/_app'
 
 export default function AddProductWindow() {
 
   const { product, open, setProduct, setOpen } = useStore()
   const picturesArr = ['Bild1', 'Bild2', 'Bild3', 'Bild4', 'Bild5', 'Bild6']
   const inputRef = useRef(null)
-  // const [ data ] = useProducts()
 
   const handleSubmit = () => {
 
@@ -28,6 +27,16 @@ export default function AddProductWindow() {
     if (bool) {
       setOpen(!open)
       console.log(product)
+
+
+    return fetch('./api/callProducts', {
+      method: 'POST',
+      body: JSON.stringify(product)
+    }).then(() => {
+      queryClient.invalidateQueries({ queryKey: ['products']})
+    }).catch((error) => {
+        console.log('ERROR:', error)
+      })
     }
 
   }

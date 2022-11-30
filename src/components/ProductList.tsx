@@ -1,4 +1,5 @@
 import useProducts from '../hooks/useProducts'
+import ProductDetails from "./ProductDetails";
 
 export default function ProductList() {
 
@@ -12,7 +13,7 @@ export default function ProductList() {
 
   return(
    <>
-    <div className='grid desktop:grid-cols-5 laptop:grid-cols-3 desktop:text-xl laptop:text-sl gap-y-12 gap-x-12 flex justify-center text-center'>
+    <div className='grid desktop:grid-cols-5 laptop:grid-cols-3 desktop:text-xl laptop:text-sl gap-y-8 gap-x-8 flex justify-center text-center'>
      { status == 'success' ?
 
          data.map((obj, index) =>
@@ -27,9 +28,7 @@ export default function ProductList() {
              <div className='border-b border-slate-300 mx-4'></div>
              <p className='py-2'>{cutText(obj.desc, 28)}</p>
              <div className='border-b border-slate-300 mx-4'></div>
-             <button className='hover:text-slate-500 text-sm pt-2' onClick={() => console.log("more info")}>Mehr Anzeigen
-               <img src='/svg/arrow-drop-down.svg' alt='arrow' className='ml-[48%] justify-center h-6 hover:text-slate-500' />
-             </button>
+             <ProductDetails data={obj} />
            </div>
          )
        :

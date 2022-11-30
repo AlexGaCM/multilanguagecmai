@@ -16,12 +16,15 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
   const dbClient = await clientPromise
   const db = dbClient.db('shop_products')
   const collection = db.collection<Product>('products')
-  // const filter = {_id: new ObjectId('6384cc3a9953107e2c5691c9')}
+  // const filter = {_id: new ObjectId('ENTER ID HERE')}
 
   console.log(method)
 
   if (method === 'POST') {
-    console.log('empty')
+    const body = JSON.parse(req.body)
+    body._id = undefined
+    await collection.insertOne(body)
+    res.status(200).end()
   }
 
   if (method === 'GET') {
