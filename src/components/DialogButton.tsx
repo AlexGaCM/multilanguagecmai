@@ -68,7 +68,7 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
         <div className='flex desktop:mt-[15%] laptop:mt-[10%] justify-center place-content-center'>
           <div className={ open ? dialogClassName : 'hidden' }>
             <div className="rounded-t-xl bg-blue-500 h-12 w-full">
-              <button className='rounded-tr-xl float-right h-full w-12 text-white hover:bg-blue-400' onClick={() => setOpen(false)}>
+              <button className='rounded-tr-xl float-right h-full w-12 text-white' onClick={() => setOpen(false)}>
                 X
               </button>
             </div>

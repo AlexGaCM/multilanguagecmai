@@ -37,12 +37,12 @@ export default function AddProductWindow() {
       setOpen(!open)
       product.picture = parseInt(product.picture)
 
-    fetch('./api/callProducts', {
-      method: 'POST',
-      body: JSON.stringify(product)
-    }).then(() => {
-      queryClient.invalidateQueries({ queryKey: ['products']})
-    }).catch((error) => {
+      fetch('./api/callProducts', {
+        method: 'POST',
+        body: JSON.stringify(product)
+      }).then(() => {
+        queryClient.invalidateQueries({queryKey: ['products']}).then()
+      }).catch((error) => {
         console.log('ERROR:', error)
       })
     }
@@ -56,7 +56,7 @@ export default function AddProductWindow() {
         <div className='flex desktop:mt-[13%] laptop:mt-[6%] justify-center place-content-center'>
           <div>
             <div className='rounded-t-xl bg-blue-500 h-12 w-full'>
-              <button className='rounded-tr-xl float-right h-full w-12 text-white hover:bg-blue-400' onClick={() => setOpen(!open)}>
+              <button className='rounded-tr-xl float-right h-full w-12 text-white' onClick={() => setOpen(!open)}>
                 X
               </button>
             </div>

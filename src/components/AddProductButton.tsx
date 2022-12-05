@@ -4,7 +4,7 @@ import AddProductWindow from "./AddProductWindow";
 
 export default function AddProductButton() {
 
-  const { product, open, setData, setOpen } = useStore()
+  const { open, setOpen } = useStore()
 
   return(
     <>

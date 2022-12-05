@@ -15,17 +15,15 @@ export default function ProductList() {
      { status == 'success' ?
 
          data.map((obj, index) =>
-           <div key={index} className={'grid grid-cols-1 place-items-center grid-rows-10 bg-slate-100 rounded border border-slate-900'}>
+           <div key={index} className={'grid grid-cols-1 place-items-center grid-rows-10 bg-slate-100 rounded-xl border border-slate-900'}>
              <div className='p-4 row-span-2 flex h-[240px]'>
-              <img src={`/img/Bild${obj.picture+1}.png`} className='text-slate-400 rounded border border-slate-500' alt='product_picture' />
+              <img src={`/img/Bild${obj.picture+1}.png`} className='text-slate-400 rounded-xl border border-slate-500' alt='product_picture' />
              </div>
-             <div className='border-b border-slate-300 px-4 w-full'></div>
-             <p className='py-2'>{cutText(obj.name, 18)}</p>
-             <div className='border-b border-slate-300 px-4 w-full'></div>
+             <div className='border-b border-slate-400 px-4 py-2 w-full rounded-b-full'>{cutText(obj.name, 32)}</div>
              <p className='py-2'>{obj.price}€</p>
-             <div className='border-b border-slate-300 px-4 w-full'></div>
-             <p className='py-2'>{cutText(obj.desc, 26)}</p>
-             <div className='border-b border-slate-300 px-4 w-full'></div>
+             <div className='border-b border-slate-300 px-4 w-[90%]'></div>
+             <p className='py-2'>{cutText(obj.desc, 24)}</p>
+             <div className='border-b border-slate-300 px-4 w-[90%]'></div>
              <ProductDetails data={obj} />
            </div>
          )
