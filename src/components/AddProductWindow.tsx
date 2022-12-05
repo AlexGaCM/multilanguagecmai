@@ -1,13 +1,22 @@
 import useStore from '../storage/storage'
 import Translate from './Translation'
-import { useRef } from 'react'
 import { queryClient } from '../pages/_app'
+import { ObjectId } from 'mongodb';
+import { useState } from 'react'
 
 export default function AddProductWindow() {
 
-  const { product, open, setProduct, setOpen } = useStore()
+  type productType = {
+    _id: ObjectId,
+    name: string,
+    price: number,
+    desc: string,
+    picture: number
+  }
+
+  const { product, open, setOpen } = useStore()
   const picturesArr = ['Bild1', 'Bild2', 'Bild3', 'Bild4', 'Bild5', 'Bild6']
-  const inputRef = useRef(null)
+  const [loadPic, setLoadPic] = useState(null)
 
   const handleSubmit = () => {
 
@@ -15,7 +24,7 @@ export default function AddProductWindow() {
     let bool = false
 
     for (const [key, value] of objArr) {
-      if (value.trim() === '' && key != '_id') {
+      if (key !== '_id' && value === null || value.toString().trim() === '') {
         alert("ERROR! input cant be empty")
         bool = false
         break
@@ -26,10 +35,9 @@ export default function AddProductWindow() {
 
     if (bool) {
       setOpen(!open)
-      console.log(product)
+      product.picture = parseInt(product.picture)
 
-
-    return fetch('./api/callProducts', {
+    fetch('./api/callProducts', {
       method: 'POST',
       body: JSON.stringify(product)
     }).then(() => {
@@ -58,7 +66,7 @@ export default function AddProductWindow() {
                   <p className=''>ID:</p>
                   <input readOnly defaultValue={product._id} className='border-slate-600 border rounded w-64 text-slate-600 bg-slate-200' />
                   <p className=''>Produktname:</p>
-                  <input ref={inputRef} className='border-slate-600 border rounded w-64' onChange={(e) => {
+                  <input className='border-slate-600 border rounded w-64' onChange={(e) => {
                     product.name = e.target.value
                   }} />
                   <p className=''>Preis:</p>
@@ -72,12 +80,23 @@ export default function AddProductWindow() {
                 </div>
                 <div className='ml-16'>
                   <p className=''>Bild:</p>
-                  <select defaultValue='' className='w-64 border border-slate-500 rounded' onChange={(e) => product.picture = e.target.value}>
-                    <option value=''><Translate placeholder='select_dropdown'/></option>
+                  <select defaultValue='' className='w-64 border border-slate-500 rounded' onChange={(e) => {
+                    product.picture = e.target.value
+                    setLoadPic(parseInt(product.picture) + 1)
+                  }}>
+                    <option value=' '><Translate placeholder='select_dropdown'/></option>
                     {picturesArr.map((picture, index ) =>
                       <option value={index} key={index}>{picture}</option>
                     )}
                   </select>
+                  <div className='mt-2 mr-4 w-96'>
+                    <p>Preview:</p>
+                    <img
+                      src={`/img/Bild${loadPic}.png`}
+                      className=' text-slate-400 rounded border border-slate-500'
+                      alt='product_picture'
+                    />
+                  </div>
                 </div>
               </div>
               <div className='float-right flex gap-x-4 mt-1 mr-6'>

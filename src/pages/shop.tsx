@@ -26,7 +26,7 @@ export default function Shop() {
             <Translate placeholder='module_name_shop' />
           </h1>
           <div className='mr-12'>
-            <div className='h-12 mt-4 bg-blue-500 rounded-t-xl'></div>
+            <div className='h-12 mt-8 bg-blue-500 rounded-t-xl'></div>
             <div className='bg-slate-100 border rounded-b-xl p-8'>
               <ProductList />
             </div>

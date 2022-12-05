@@ -13,7 +13,7 @@ const useStore = create<Storage>(set => ({
     name: '',
     price: '',
     desc: '',
-    picture: ''
+    picture: null
 },
   open: false,
   setProduct: (product) => set({ product }),
