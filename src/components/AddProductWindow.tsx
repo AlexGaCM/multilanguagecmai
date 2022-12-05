@@ -1,18 +1,9 @@
 import useStore from '../storage/storage'
 import Translate from './Translation'
 import { queryClient } from '../pages/_app'
-import { ObjectId } from 'mongodb';
 import { useState } from 'react'
 
 export default function AddProductWindow() {
-
-  type productType = {
-    _id: ObjectId,
-    name: string,
-    price: number,
-    desc: string,
-    picture: number
-  }
 
   const { product, open, setOpen } = useStore()
   const picturesArr = ['Bild1', 'Bild2', 'Bild3', 'Bild4', 'Bild5', 'Bild6']

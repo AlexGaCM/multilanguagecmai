@@ -1,7 +1,13 @@
 import create from 'zustand'
 
 type Storage = {
-  product: object,
+  product: {
+    _id: string,
+    name: string,
+    price: string,
+    desc: string,
+    picture: any
+  },
   open: boolean,
   setProduct: (object) => void,
   setOpen: (boolean) => void

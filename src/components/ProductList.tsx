@@ -19,7 +19,7 @@ export default function ProductList() {
              <div className='p-4 row-span-2 flex h-[240px]'>
               <img src={`/img/Bild${obj.picture+1}.png`} className='text-slate-400 rounded-xl border border-slate-500' alt='product_picture' />
              </div>
-             <div className='border-b border-slate-400 px-4 py-2 w-full rounded-b-full'>{cutText(obj.name, 32)}</div>
+             <div className='border-b border-slate-900 px-4 pb-2 w-full rounded-full'>{cutText(obj.name, 32)}</div>
              <p className='py-2'>{obj.price}€</p>
              <div className='border-b border-slate-300 px-4 w-[90%]'></div>
              <p className='py-2'>{cutText(obj.desc, 24)}</p>
