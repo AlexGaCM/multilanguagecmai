@@ -1,6 +1,6 @@
 import useStore from '../storage/storage'
 import Translate from './Translation'
-import AddProductWindow from "./AddProductWindow";
+import AddProductWindow from './AddProductWindow';
 
 export default function AddProductButton() {
 

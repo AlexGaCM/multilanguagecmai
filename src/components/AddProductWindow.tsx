@@ -1,13 +1,18 @@
 import useStore from '../storage/storage'
 import Translate from './Translation'
 import { queryClient } from '../pages/_app'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 export default function AddProductWindow() {
 
-  const { product, open, setOpen } = useStore()
+  const { product, setProduct, open, setOpen } = useStore()
   const picturesArr = ['Bild1', 'Bild2', 'Bild3', 'Bild4', 'Bild5', 'Bild6']
   const [loadPic, setLoadPic] = useState(null)
+
+  const nameRef = useRef<HTMLInputElement>()
+  const priceRef = useRef<HTMLInputElement>()
+  const descRef = useRef<HTMLTextAreaElement>()
+  const picRef = useRef<HTMLSelectElement>()
 
   const handleSubmit = () => {
 
@@ -27,6 +32,19 @@ export default function AddProductWindow() {
     if (bool) {
       setOpen(!open)
       product.picture = parseInt(product.picture)
+
+      nameRef.current.value = ''
+      priceRef.current.value = ''
+      descRef.current.value = ''
+      picRef.current.value = ' '
+
+      setProduct({
+        _id: 'ID wird automatisch vergeben',
+        name: '',
+        price: '',
+        desc: '',
+        picture: null
+      })
 
       fetch('./api/callProducts', {
         method: 'POST',
@@ -52,26 +70,26 @@ export default function AddProductWindow() {
               </button>
             </div>
             <div className='rounded-b-xl bg-slate-50 w-[960px] h-[540px]'>
-              <div className='justify-left flex pt-12'>
+              <div className='justify-left flex pt-12 mr-8'>
                 <div className='grid grid-cols-2 gap-y-8 gap-x-4 text-right'>
                   <p className=''>ID:</p>
                   <input readOnly defaultValue={product._id} className='border-slate-600 border rounded w-64 text-slate-600 bg-slate-200' />
                   <p className=''>Produktname:</p>
-                  <input className='border-slate-600 border rounded w-64' onChange={(e) => {
+                  <input ref={nameRef} className='border-slate-600 border rounded w-64' onChange={(e) => {
                     product.name = e.target.value
                   }} />
                   <p className=''>Preis:</p>
-                  <input defaultValue='' className='border-slate-600 border rounded w-64' onChange={(e) => {
+                  <input ref={priceRef} className='border-slate-600 border rounded w-64' onChange={(e) => {
                     product.price = e.target.value
                   }} />
                   <p className=''>Beschreibung:</p>
-                  <textarea defaultValue='' className='resize-none border-slate-600 border rounded w-64 h-64' onChange={(e) => {
+                  <textarea ref={descRef} className='resize-none border-slate-600 border rounded w-64 h-64' onChange={(e) => {
                     product.desc = e.target.value
                   }} />
                 </div>
                 <div className='ml-16'>
                   <p className=''>Bild:</p>
-                  <select defaultValue='' className='w-64 border border-slate-500 rounded' onChange={(e) => {
+                  <select ref={picRef} defaultValue='' className='w-64 border border-slate-500 rounded' onChange={(e) => {
                     product.picture = e.target.value
                     setLoadPic(parseInt(product.picture) + 1)
                   }}>

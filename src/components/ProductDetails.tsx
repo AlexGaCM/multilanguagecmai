@@ -81,7 +81,7 @@ export default function ProductDetails({data}: Props) {
                     ></input>
                     <textarea
                       defaultValue={data.desc}
-                      className='overflow-y-scroll h-56 w-[460px] text-center row-span-2 bg-slate-200 rounded border border-slate-900 resize-none'
+                      className='overflow-y-scroll h-56 w-[380px] text-base text-center row-span-2 bg-slate-200 rounded border border-slate-900 resize-none'
                       onChange={(e) => {
                         handleChange(e, 'desc')
                       }}
@@ -91,7 +91,7 @@ export default function ProductDetails({data}: Props) {
                   <>
                     <p className='overflow-scroll'>{data.name}</p>
                     <p className='overflow-scroll'>Preis: {data.price}€</p>
-                    <p className='overflow-scroll h-56 w-[460px] row-span-2 bg-blue-100 rounded border border-blue-500'>{data.desc}</p>
+                    <p className='overflow-scroll h-56 w-[380px] text-base row-span-2 bg-blue-100 rounded border border-blue-500'>{data.desc}</p>
                   </>
                 }
               <div className='row-span-2'>

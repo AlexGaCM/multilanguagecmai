@@ -16,7 +16,7 @@ export default function ProductList() {
 
          data.map((obj, index) =>
            <div key={index} className={'grid grid-cols-1 place-items-center grid-rows-10 bg-slate-100 rounded-xl border border-slate-900'}>
-             <div className='p-4 row-span-2 flex h-[240px]'>
+             <div className='p-4 row-span-2 flex desktop:h-[240px] laptop:h-[200px]'>
               <img src={`/img/Bild${obj.picture+1}.png`} className='text-slate-400 rounded-xl border border-slate-500' alt='product_picture' />
              </div>
              <div className='border-b border-slate-900 px-4 pb-2 w-full rounded-full'>{cutText(obj.name, 32)}</div>
