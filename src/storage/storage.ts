@@ -4,7 +4,7 @@ type Storage = {
   product: {
     _id: string,
     name: string,
-    price: string,
+    price: any,
     desc: string,
     picture: any
   },
@@ -17,7 +17,7 @@ const useStore = create<Storage>(set => ({
   product: {
     _id: 'ID wird automatisch vergeben',
     name: '',
-    price: '',
+    price: null,
     desc: '',
     picture: null
 },

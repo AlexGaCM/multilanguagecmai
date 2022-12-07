@@ -20,8 +20,8 @@ export default function AddProductWindow() {
     let bool = false
 
     for (const [key, value] of objArr) {
-      if (key !== '_id' && value === null || value.toString().trim() === '') {
-        alert("ERROR! input cant be empty")
+      if (key !== '_id' && value === null || key === 'price' && isNaN(value) || value.toString().trim() === '') {
+        alert("ERROR! input cant be empty and price must be a number")
         bool = false
         break
       } else {
@@ -41,7 +41,7 @@ export default function AddProductWindow() {
       setProduct({
         _id: 'ID wird automatisch vergeben',
         name: '',
-        price: '',
+        price: null,
         desc: '',
         picture: null
       })
@@ -80,7 +80,7 @@ export default function AddProductWindow() {
                   }} />
                   <p className=''>Preis:</p>
                   <input ref={priceRef} className='border-slate-600 border rounded w-64' onChange={(e) => {
-                    product.price = e.target.value
+                    product.price = parseFloat(e.target.value.replace(',', '.'))
                   }} />
                   <p className=''>Beschreibung:</p>
                   <textarea ref={descRef} className='resize-none border-slate-600 border rounded w-64 h-64' onChange={(e) => {
