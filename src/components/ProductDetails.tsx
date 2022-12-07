@@ -121,23 +121,25 @@ export default function ProductDetails({data}: Props) {
                   edit
                   ?
                   <>
-                    <input
-                      defaultValue={formatPrice(data.price)}
-                      className='overflow-y-auto text-center bg-slate-200 rounded border border-slate-900'
-                      onChange={(e) => {
-                        handleChange(e, 'price')
-                      }}
-                    ></input>
-                    <input
-                      defaultValue={data.name}
-                      className='overflow-y-auto w-64 text-center bg-slate-200 rounded border border-slate-900 font-semibold'
-                      onChange={(e) => {
-                        handleChange(e, 'name')
-                      }}
-                    ></input>
+                    <div>
+                      <input
+                        defaultValue={data.name}
+                        className='overflow-y-auto w-64 text-center bg-slate-200 rounded border border-slate-900 font-semibold'
+                        onChange={(e) => {
+                          handleChange(e, 'name')
+                        }}
+                      ></input>
+                      <input
+                        defaultValue={formatPrice(data.price)}
+                        className='overflow-y-auto mt-2 w-64 text-center bg-slate-200 rounded border border-slate-900'
+                        onChange={(e) => {
+                          handleChange(e, 'price')
+                        }}
+                      ></input>
+                    </div>
                     <textarea
                       defaultValue={data.desc}
-                      className='overflow-y-scroll px-4 h-56 w-[380px] text-base text-center row-span-2 bg-slate-200 rounded border border-slate-900 resize-none'
+                      className='overflow-y-scroll px-4 h-4/6 w-[380px] text-base text-center row-span-3 bg-slate-200 rounded border border-slate-900 resize-none'
                       onChange={(e) => {
                         handleChange(e, 'desc')
                       }}
@@ -145,9 +147,16 @@ export default function ProductDetails({data}: Props) {
                   </>
                   :
                   <>
-                    <p className='overflow-scroll'>Preis: {formatPrice(data.price)}€</p>
-                    <p className='overflow-scroll font-semibold'>{data.name}</p>
-                    <p className='overflow-scroll px-4 h-56 w-[380px] text-base row-span-2 bg-blue-100 rounded border border-blue-500'>{data.desc}</p>
+                    <div>
+                      <p className='overflow-scroll font-semibold'>{data.name}</p>
+                      <p className='overflow-scroll mt-2'>Preis: {formatPrice(data.price)}€</p>
+                    </div>
+                    <textarea
+                      readOnly
+                      className='overflow-scroll px-4 h-4/6 w-[380px] text-center text-base row-span-3 bg-blue-100 rounded border border-blue-500 resize-none'
+                    >
+                      {data.desc}
+                    </textarea>
                   </>
                 }
               <div className='row-span-2'>
