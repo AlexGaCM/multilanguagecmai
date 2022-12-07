@@ -31,7 +31,6 @@ export default function AddProductWindow() {
 
     if (bool) {
       setOpen(!open)
-      product.picture = parseInt(product.picture)
 
       nameRef.current.value = ''
       priceRef.current.value = ''
@@ -45,6 +44,8 @@ export default function AddProductWindow() {
         desc: '',
         picture: null
       })
+
+      product.picture = parseInt(product.picture)
 
       fetch('./api/callProducts', {
         method: 'POST',
@@ -80,7 +81,7 @@ export default function AddProductWindow() {
                   }} />
                   <p className=''>Preis:</p>
                   <input ref={priceRef} className='border-slate-600 border rounded w-64' onChange={(e) => {
-                    product.price = parseFloat(e.target.value.replace(',', '.'))
+                    product.price = e.target.value.replace(',', '.')
                   }} />
                   <p className=''>Beschreibung:</p>
                   <textarea ref={descRef} className='resize-none border-slate-600 border rounded w-64 h-64' onChange={(e) => {

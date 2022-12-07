@@ -5,9 +5,9 @@ import { ObjectId } from 'mongodb'
 type Product = {
   _id: ObjectId,
   name: string,
-  price: string,
+  price: number,
   desc: string,
-  picture: string
+  picture: number
 }
 
 export default async (req:NextApiRequest, res:NextApiResponse) => {
@@ -25,6 +25,7 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
   if (method === 'POST') {
     const body = JSON.parse(req.body)
     body._id = undefined
+    body.price = parseFloat(body.price)
     await collection.insertOne(body)
     res.status(200).end()
   }
@@ -41,7 +42,7 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
       {_id: new ObjectId(body._id)},
       { $set: {
           name: body.name,
-          price: body.price,
+          price: parseFloat(body.price),
           desc: body.desc,
           picture: body.picture
         }})

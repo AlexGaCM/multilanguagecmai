@@ -95,13 +95,20 @@ export default function ProductDetails({data}: Props) {
     })
   }
 
+  const formatPrice = (price) => {
+    return parseFloat(price.replace(',', '.')).toFixed(2).toString().replace('.', ',')
+  }
+
   data.price = data.price.toString()
 
   return(
     <>
-      <button className='hover:text-slate-500 border-b border-slate-400 px-4 pb-2 w-full rounded-full font-semibold' onClick={() => handleMoreInfo()}>{cutText(data.name, 32)}</button>
+      <button className='' onClick={() => handleMoreInfo()}>
+        <span className='group-hover:bg-slate-200 px-4 py-1 rounded-md'>{cutText(data.name , 32)}
+        </span>
+      </button>
       <div className={ open ? 'fixed h-screen w-screen bg-slate-900 opacity-50 top-0 left-0' : 'hidden' }></div>
-      <div className={ open ? 'fixed h-screen w-screen flex align-center justify-center backdrop-blur-sm left-0 top-0' : 'hidden' }>
+      <div className={ open ? 'fixed h-screen w-screen flex align-center justify-center backdrop-blur-sm left-0 top-0 font-light text-black' : 'hidden' }>
         <div className='desktop:mt-[13%] laptop:mt-[6%]'>
           <div className={ edit ? 'rounded-t-xl bg-slate-500 h-12 w-full' : 'rounded-t-xl bg-blue-500 h-12 w-full' }>
             <button className='rounded-tr-xl float-right h-full w-12 text-white' onClick={() => handleClose()}>
@@ -115,7 +122,7 @@ export default function ProductDetails({data}: Props) {
                   ?
                   <>
                     <input
-                      defaultValue={data.price.replace('.', ',')}
+                      defaultValue={formatPrice(data.price)}
                       className='overflow-y-auto text-center bg-slate-200 rounded border border-slate-900'
                       onChange={(e) => {
                         handleChange(e, 'price')
@@ -138,7 +145,7 @@ export default function ProductDetails({data}: Props) {
                   </>
                   :
                   <>
-                    <p className='overflow-scroll'>Preis: {parseFloat(data.price.replace(',', '.')).toFixed(2).toString().replace('.', ',')}€</p>
+                    <p className='overflow-scroll'>Preis: {formatPrice(data.price)}€</p>
                     <p className='overflow-scroll font-semibold'>{data.name}</p>
                     <p className='overflow-scroll px-4 h-56 w-[380px] text-base row-span-2 bg-blue-100 rounded border border-blue-500'>{data.desc}</p>
                   </>
