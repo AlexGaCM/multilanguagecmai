@@ -56,7 +56,6 @@ export default function ProductDetails({data}: Props) {
       }
     }
 
-
     if (bool) {
       data = store
       setEdit(!edit)

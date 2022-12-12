@@ -6,7 +6,7 @@ import { useState, useRef } from 'react'
 export default function AddProductWindow() {
 
   const { product, setProduct, open, setOpen } = useStore()
-  const picturesArr = ['Bild1', 'Bild2', 'Bild3', 'Bild4', 'Bild5', 'Bild6']
+  const picturesArr = ['Bild1', 'Bild2', 'Bild3', 'Bild4', 'Bild5', 'Bild6', 'Bild7', 'Bild8']
   const [loadPic, setLoadPic] = useState(null)
 
   const nameRef = useRef<HTMLInputElement>()
