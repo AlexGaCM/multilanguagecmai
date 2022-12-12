@@ -11,9 +11,7 @@ export default function ProductList() {
       {status === 'success'
         ?
         data.map((obj, index) =>
-          <div key={index}>
-            <ProductDetails data={obj} />
-          </div>
+          <ProductDetails key={index} data={obj} />
         )
       :
         <></>

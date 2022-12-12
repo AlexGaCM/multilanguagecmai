@@ -92,7 +92,6 @@ export default function AddProductWindow() {
                   <select ref={picRef} defaultValue='' className='w-64 border border-slate-500 rounded' onChange={(e) => {
                     product.picture = e.target.value
                     setLoadPic(parseInt(product.picture) + 1)
-                    console.log(product.picture)
                   }}>
                     <option value=' '><Translate placeholder='select_dropdown'/></option>
                     {picturesArr.map((picture, index ) =>
