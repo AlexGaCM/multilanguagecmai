@@ -103,8 +103,8 @@ export default function ProductDetails({data, index}: Props) {
 
   return(
     <>
-      <button className='' onClick={() => handleMoreInfo()}>
-        <div key={index} className={`grid grid-cols-1 place-items-center grid-rows-10 bg-slate-50 border border-slate-400 font-light rounded`}>
+      <button key={index} onClick={() => handleMoreInfo()}>
+        <div className={`grid grid-cols-1 place-items-center grid-rows-10 bg-slate-50 border border-slate-400 font-light rounded`}>
           <div className='p-4 row-span-2 flex desktop:h-[240px] laptop:h-[200px]'>
             <img
               src={`/img/Bild${data.picture + 1}.png`}

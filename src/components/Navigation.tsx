@@ -8,8 +8,7 @@ type Props = {
 
 export default function Navigation({activeSite}: Props) {
   const router = useRouter()
-  const [active, setActive] = useState(activeSite)
-  console.log(active)
+  const [active] = useState(activeSite)
 
   return(
     <>
@@ -20,34 +19,22 @@ export default function Navigation({activeSite}: Props) {
           </div>
           <nav className='flex flex-1 flex-col justify-between justify-items-stretch'>
             <ul className='text-slate-400 text-sm'>
-              <li onClick={() => {
-                router.push('/')
-                setActive('dashboard')
-              }}
+              <li onClick={() => router.push('/')}
                 className={active === 'dashboard' ? 'group cursor-pointer border-l-3 px-6 py-4 relative text-white bg-slate-800 flex items-center' : 'group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'}
               >
                 <span><Translate placeholder='module_name_dashboard' /></span>
               </li>
-              <li onClick={() => {
-                router.push('/products')
-                setActive('products')
-              }}
+              <li onClick={() => router.push('/products')}
                 className={active === 'products' ? 'group cursor-pointer border-l-3 px-6 py-4 relative text-white bg-slate-800 flex items-center' : 'group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'}
               >
                 <span><Translate placeholder='module_name_products' /></span>
               </li>
-              <li onClick={() => {
-                router.push('/online-ads')
-                setActive('online-ads')
-              }}
+              <li onClick={() => router.push('/online-ads')}
                 className={active === 'online-ads' ? 'group cursor-pointer border-l-3 px-6 py-4 relative text-white bg-slate-800 flex items-center' : 'group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'}
               >
                 <span><Translate placeholder='module_name_online_ads' /></span>
               </li>
-              <li onClick={() => {
-                router.push('/shop')
-                setActive('shop')
-              }}
+              <li onClick={() => router.push('/shop')}
                 className={active === 'shop' ? 'group cursor-pointer border-l-3 px-6 py-4 relative text-white bg-slate-800 flex items-center' : 'group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'}
               >
                 <span><Translate placeholder='module_name_shop' /></span>

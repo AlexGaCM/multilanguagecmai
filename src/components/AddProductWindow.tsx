@@ -73,7 +73,7 @@ export default function AddProductWindow() {
             </div>
             <div className='rounded-b-xl bg-slate-50 w-[960px] h-[540px]'>
               <div className='justify-left flex pt-12 mr-8'>
-                <div className='grid grid-cols-2 gap-y-8 gap-x-4 text-right mt-4'>
+                <div className='grid grid-cols-2 gap-y-8 gap-x-4 text-right mt-6'>
                   <p className=''>Produktname:</p>
                   <input ref={nameRef} className='border-slate-600 border rounded w-64' onChange={(e) => {
                     product.name = e.target.value
