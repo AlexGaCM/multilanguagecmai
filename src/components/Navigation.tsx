@@ -1,8 +1,15 @@
 import { useRouter } from 'next/router'
 import Translate from './Translation'
+import { useState } from 'react'
 
-export default function Navigation() {
+type Props = {
+  activeSite: string
+}
+
+export default function Navigation({activeSite}: Props) {
   const router = useRouter()
+  const [active, setActive] = useState(activeSite)
+  console.log(active)
 
   return(
     <>
@@ -13,16 +20,36 @@ export default function Navigation() {
           </div>
           <nav className='flex flex-1 flex-col justify-between justify-items-stretch'>
             <ul className='text-slate-400 text-sm'>
-              <li onClick={() => router.push('/')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>
+              <li onClick={() => {
+                router.push('/')
+                setActive('dashboard')
+              }}
+                className={active === 'dashboard' ? 'group cursor-pointer border-l-3 px-6 py-4 relative text-white bg-slate-800 flex items-center' : 'group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'}
+              >
                 <span><Translate placeholder='module_name_dashboard' /></span>
               </li>
-              <li onClick={() => router.push('/products')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>
+              <li onClick={() => {
+                router.push('/products')
+                setActive('products')
+              }}
+                className={active === 'products' ? 'group cursor-pointer border-l-3 px-6 py-4 relative text-white bg-slate-800 flex items-center' : 'group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'}
+              >
                 <span><Translate placeholder='module_name_products' /></span>
               </li>
-              <li onClick={() => router.push('/online-ads')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>
+              <li onClick={() => {
+                router.push('/online-ads')
+                setActive('online-ads')
+              }}
+                className={active === 'online-ads' ? 'group cursor-pointer border-l-3 px-6 py-4 relative text-white bg-slate-800 flex items-center' : 'group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'}
+              >
                 <span><Translate placeholder='module_name_online_ads' /></span>
               </li>
-              <li onClick={() => router.push('/shop')} className='group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'>
+              <li onClick={() => {
+                router.push('/shop')
+                setActive('shop')
+              }}
+                className={active === 'shop' ? 'group cursor-pointer border-l-3 px-6 py-4 relative text-white bg-slate-800 flex items-center' : 'group cursor-pointer border-l-3 px-6 py-4 relative hover:text-white hover:bg-slate-800 flex items-center'}
+              >
                 <span><Translate placeholder='module_name_shop' /></span>
               </li>
             </ul>

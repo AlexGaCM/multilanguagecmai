@@ -94,6 +94,7 @@ export default function AddProductWindow() {
                   <select ref={picRef} defaultValue='' className='w-64 border border-slate-500 rounded' onChange={(e) => {
                     product.picture = e.target.value
                     setLoadPic(parseInt(product.picture) + 1)
+                    console.log(product.picture)
                   }}>
                     <option value=' '><Translate placeholder='select_dropdown'/></option>
                     {picturesArr.map((picture, index ) =>
@@ -101,12 +102,20 @@ export default function AddProductWindow() {
                     )}
                   </select>
                   <div className='mt-2 mr-4 w-96'>
-                    <p>Preview:</p>
-                    <img
-                      src={`/img/Bild${loadPic}.png`}
-                      className=' text-slate-400 rounded border border-slate-500'
-                      alt='product_picture'
-                    />
+                    {
+                      product.picture && product.picture !== ' '
+                        ?
+                        <>
+                        <p>Preview:</p>
+                        <img
+                          src={`/img/Bild${loadPic}.png`}
+                          className=' text-slate-400 rounded border border-slate-500'
+                          alt='product_picture'
+                        />
+                        </>
+                      :
+                      <></>
+                    }
                   </div>
                 </div>
               </div>

@@ -17,7 +17,7 @@ export default function Home(_props) {
 
   return (
     <>
-      <Navigation />
+      <Navigation activeSite='dashboard' />
       <Topbar />
       <div className='mt-[40px] laptop:ml-[300px] desktop:ml-[340px]'>
         <h1 className='text-3xl'>

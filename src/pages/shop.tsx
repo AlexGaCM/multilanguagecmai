@@ -19,7 +19,7 @@ export default function Shop() {
   return (
     <>
       <div>
-        <Navigation />
+        <Navigation activeSite='shop' />
         <Topbar />
         <div className='mt-[40px] laptop:ml-[300px] desktop:ml-[340px]'>
           <h1 className='text-3xl'>

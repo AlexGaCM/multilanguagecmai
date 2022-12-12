@@ -151,10 +151,10 @@ export default function ProductDetails({data}: Props) {
                       <p className='overflow-scroll mt-2'>Preis: {formatPrice(data.price)}€</p>
                     </div>
                     <textarea
+                      defaultValue={data.desc}
                       readOnly
                       className='overflow-scroll px-4 h-4/6 w-[380px] text-center text-base row-span-3 bg-blue-100 rounded border border-blue-500 resize-none'
                     >
-                      {data.desc}
                     </textarea>
                   </>
                 }
