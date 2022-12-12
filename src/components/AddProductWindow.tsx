@@ -73,9 +73,7 @@ export default function AddProductWindow() {
             </div>
             <div className='rounded-b-xl bg-slate-50 w-[960px] h-[540px]'>
               <div className='justify-left flex pt-12 mr-8'>
-                <div className='grid grid-cols-2 gap-y-8 gap-x-4 text-right'>
-                  <p className=''>ID:</p>
-                  <input readOnly defaultValue={product._id} className='border-slate-600 border rounded w-64 text-slate-600 bg-slate-200' />
+                <div className='grid grid-cols-2 gap-y-8 gap-x-4 text-right mt-4'>
                   <p className=''>Produktname:</p>
                   <input ref={nameRef} className='border-slate-600 border rounded w-64' onChange={(e) => {
                     product.name = e.target.value
@@ -119,7 +117,7 @@ export default function AddProductWindow() {
                   </div>
                 </div>
               </div>
-              <div className='float-right flex gap-x-4 mt-1 mr-6'>
+              <div className='float-right flex gap-x-4 mt-12 mr-6'>
                 <button
                   className='border-slate-400 hover:bg-slate-400 hover:text-white border-2 rounded-md h-10 w-24'
                   onClick={() => setOpen(!open)}

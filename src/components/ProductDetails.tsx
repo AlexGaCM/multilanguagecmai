@@ -102,10 +102,26 @@ export default function ProductDetails({data}: Props) {
 
   return(
     <>
-      <button className='' onClick={() => handleMoreInfo()}>
-        <span className='group-hover:bg-slate-200 px-4 py-1 rounded-md'>{cutText(data.name , 32)}
-        </span>
-      </button>
+
+    <button className='' onClick={() => handleMoreInfo()}>
+      <div className={`grid grid-cols-1 place-items-center grid-rows-10 bg-slate-50 border border-slate-400 font-light rounded`}>
+        <div className='p-4 row-span-2 flex desktop:h-[240px] laptop:h-[200px]'>
+          <img
+            src={`/img/Bild${data.picture + 1}.png`}
+            className='text-slate-400 rounded border border-slate-400'
+            alt='product_picture'
+          />
+        </div>
+        <div
+          className='hover:text-slate-500 border-b border-slate-400 px-4 pb-2 w-full rounded-full font-semibold'>
+            <span className='px-4 py-1 rounded-md'>{cutText(data.name , 32)}
+            </span>
+        </div>
+        <div className='py-2'>{parseFloat(data.price).toFixed(2).toString().replace('.', ',')}€</div>
+        <div className='border-b border-slate-300 px-4 w-[90%]'></div>
+        <div className='py-2'>{cutText(data.desc, 24)}</div>
+      </div>
+    </button>
       <div className={ open ? 'fixed h-screen w-screen bg-slate-900 opacity-50 top-0 left-0' : 'hidden' }></div>
       <div className={ open ? 'fixed h-screen w-screen flex align-center justify-center backdrop-blur-sm left-0 top-0 font-light text-black' : 'hidden' }>
         <div className='desktop:mt-[13%] laptop:mt-[6%]'>
