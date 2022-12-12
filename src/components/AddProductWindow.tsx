@@ -33,9 +33,10 @@ export default function AddProductWindow() {
       setOpen(!open)
 
       nameRef.current.value = ''
-      priceRef.current.value = ''
+      priceRef.current.value = null
       descRef.current.value = ''
       picRef.current.value = ' '
+      setLoadPic(null)
 
       setProduct({
         _id: 'ID wird automatisch vergeben',
@@ -89,7 +90,7 @@ export default function AddProductWindow() {
                   }} />
                 </div>
                 <div className='ml-16'>
-                  <p className=''>Bild:</p>
+                  <p>Bild:</p>
                   <select ref={picRef} defaultValue='' className='w-64 border border-slate-500 rounded' onChange={(e) => {
                     product.picture = e.target.value
                     setLoadPic(parseInt(product.picture) + 1)

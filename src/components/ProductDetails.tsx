@@ -61,7 +61,7 @@ export default function ProductDetails({data}: Props) {
       setEdit(!edit)
 
       fetch('./api/callProducts', {
-        method: 'PATCH',
+        method: 'PUT',
         body: JSON.stringify(data)
       }).then(() => {
         queryClient.invalidateQueries({ queryKey: ['products']}).then()

@@ -36,7 +36,7 @@ export default async (req:NextApiRequest, res:NextApiResponse) => {
     res.status(200).end()
   }
 
-  if (method === 'PATCH') {
+  if (method === 'PUT') {
     const body = JSON.parse(req.body)
     await collection.updateOne(
       {_id: new ObjectId(body._id)},

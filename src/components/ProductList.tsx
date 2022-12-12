@@ -3,7 +3,7 @@ import ProductDetails from './ProductDetails'
 
 export default function ProductList() {
 
-  const [ data, status ] = useProducts()
+  const [data, status] = useProducts()
 
   const cutText = (str, n) => {
     return (str.length > n) ? str.slice(0, n-1).trim() + '...' : str
@@ -12,7 +12,6 @@ export default function ProductList() {
   return(
    <>
     <div className='grid desktop:grid-cols-5 laptop:grid-cols-3 desktop:text-xl laptop:text-sl gap-y-8 gap-x-8 flex justify-center text-center'>
-
       {status === 'success'
         ?
         data.map((obj, index) =>
@@ -36,7 +35,6 @@ export default function ProductList() {
       :
         <></>
       }
-
     </div>
    </>
   )
