@@ -10,8 +10,8 @@ export default function ProductList() {
     <div className='grid desktop:grid-cols-5 laptop:grid-cols-3 desktop:text-xl laptop:text-sl gap-y-8 gap-x-8 flex justify-center text-center'>
       {status === 'success'
         ?
-        data.map((obj, index) =>
-          <ProductDetails index={index} data={obj} />
+        data.map((product, i) =>
+          <ProductDetails key={i} data={product}/>
         )
       :
         <></>

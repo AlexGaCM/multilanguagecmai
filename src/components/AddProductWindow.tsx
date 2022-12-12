@@ -68,7 +68,7 @@ export default function AddProductWindow() {
           <div>
             <div className='rounded-t-xl bg-blue-500 h-12 w-full'>
               <button className='rounded-tr-xl float-right h-full w-12 text-white' onClick={() => setOpen(!open)}>
-                X
+                x
               </button>
             </div>
             <div className='rounded-b-xl bg-slate-50 w-[960px] h-[540px]'>
@@ -101,15 +101,15 @@ export default function AddProductWindow() {
                   <div className='mt-2 mr-4 w-96'>
                     {
                       product.picture && product.picture !== ' '
-                        ?
-                        <>
+                      ?
+                      <>
                         <p>Preview:</p>
                         <img
                           src={`/img/Bild${loadPic}.png`}
                           className=' text-slate-400 rounded border border-slate-500'
                           alt='product_picture'
                         />
-                        </>
+                      </>
                       :
                       <></>
                     }

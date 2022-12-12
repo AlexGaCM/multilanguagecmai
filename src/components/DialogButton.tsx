@@ -69,7 +69,7 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
           <div className={ open ? dialogClassName : 'hidden' }>
             <div className="rounded-t-xl bg-blue-500 h-12 w-full">
               <button className='rounded-tr-xl float-right h-full w-12 text-white' onClick={() => setOpen(false)}>
-                X
+                x
               </button>
             </div>
             <form className='text-center'>
