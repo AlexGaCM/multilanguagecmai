@@ -18,10 +18,6 @@ export default function ProductDetails({data}: Props) {
   const [open, setOpen] = useState(false)
   const [edit, setEdit] = useState(false)
 
-  const cutText = (str, n) => {
-    return (str.length > n) ? str.slice(0, n-1).trim() + '...' : str
-  }
-
   const store = {
     _id: data._id,
     name: data.name,
@@ -30,9 +26,11 @@ export default function ProductDetails({data}: Props) {
     picture: data.picture
   }
 
-  const handleMoreInfo = () => {
-    setOpen(!open)
-  }
+  const cutText = (str, n) => (str.length > n) ? str.slice(0, n-1).trim() + '...' : str
+
+  const handleMoreInfo = () => setOpen(!open)
+
+  const handleChange = (e, key) => store[key] = e.target.value
 
   const handleEdit = () => {
 
@@ -81,10 +79,6 @@ export default function ProductDetails({data}: Props) {
     setEdit(false)
   }
 
-  const handleChange = (e, key) => {
-    store[key] = e.target.value
-  }
-
   const delProduct = () => {
     setOpen(!open)
 
@@ -116,7 +110,7 @@ export default function ProductDetails({data}: Props) {
             />
           </div>
           <div className='hover:text-slate-500 border-b border-slate-400 px-4 pb-2 w-full rounded-full font-semibold'>
-            <span className='px-4 py-1 rounded-md'>{cutText(data.name , 32)}
+            <span className='px-4 py-1 rounded-md'>{cutText(data.name , 30)}
             </span>
           </div>
           <div className='py-2'>{parseFloat(data.price).toFixed(2).toString().replace('.', ',')}€</div>
@@ -125,8 +119,8 @@ export default function ProductDetails({data}: Props) {
         </div>
       </button>
       <div className={ open ? 'fixed h-screen w-screen bg-slate-900 opacity-50 top-0 left-0' : 'hidden' }></div>
-      <div className={ open ? 'fixed h-screen w-screen flex align-center justify-center backdrop-blur-sm left-0 top-0 font-light text-black' : 'hidden' }>
-        <div className='desktop:mt-[13%] laptop:mt-[6%]'>
+      <div className={ open ? 'fixed h-screen grid grid-cols-1 grid-rows-1 place-items-center w-screen backdrop-blur-sm left-0 top-0 font-light text-black' : 'hidden' }>
+        <div>
           <div className={ edit ? 'rounded-t-xl bg-slate-500 h-12 w-full' : 'rounded-t-xl bg-blue-500 h-12 w-full' }>
             <button className='rounded-tr-xl float-right h-full w-12 text-white text-base' onClick={() => handleClose()}>
               x
@@ -182,7 +176,7 @@ export default function ProductDetails({data}: Props) {
             </div>
             <div className='flex gap-x-4 p-4 mt-6 text-base justify-end font-normal'>
               <button
-                className='hover:bg-rose-400 bg-rose-600 text-white hover:text-white rounded-md h-10 w-24'
+                className='hover:bg-rose-500 bg-rose-600 text-white hover:text-white rounded-md h-10 w-24'
                 onClick={() => delProduct()}
               >
                 Löschen

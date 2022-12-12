@@ -12,7 +12,7 @@ export default function Navigation({activeSite}: Props) {
 
   return(
     <>
-      <div className='fixed'>
+      <div className='fixed left-0 z-10'>
         <div className='bg-slate-900 h-screen laptop:w-[252px] desktop:w-[288px]'>
           <div className='h-[60px] border-b border-slate-800'>
 
