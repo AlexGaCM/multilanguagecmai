@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Translate from '../components/Translation'
 import { queryClient } from '../pages/_app'
 import { ObjectId } from 'mongodb'
+import { useRouter } from 'next/router'
 
 type Props = {
   data: {
@@ -17,6 +18,7 @@ export default function ProductDetails({data}: Props) {
 
   const [open, setOpen] = useState(false)
   const [edit, setEdit] = useState(false)
+  const router = useRouter()
 
   const store = {
     _id: data._id,
@@ -28,7 +30,7 @@ export default function ProductDetails({data}: Props) {
 
   const cutText = (str, n) => (str.length > n) ? str.slice(0, n-1).trim() + '...' : str
 
-  const handleMoreInfo = () => setOpen(!open)
+  const handleMoreInfo = () => router.push(`/shop/${data._id}`)
 
   const handleChange = (e, key) => store[key] = e.target.value
 
@@ -118,8 +120,8 @@ export default function ProductDetails({data}: Props) {
           <div className='py-2'>{cutText(data.desc, 24)}</div>
         </div>
       </button>
-      <div className={ open ? 'fixed h-screen w-screen bg-slate-900 opacity-50 top-0 left-0' : 'hidden' }></div>
-      <div className={ open ? 'fixed h-screen grid grid-cols-1 grid-rows-1 place-items-center w-screen backdrop-blur-sm left-0 top-0 font-light text-black' : 'hidden' }>
+      <div className={ open ? 'z-40 fixed h-screen w-screen bg-slate-900 opacity-50 top-0 left-0' : 'hidden' }></div>
+      <div className={ open ? 'z-50 fixed h-screen grid grid-cols-1 grid-rows-1 place-items-center w-screen backdrop-blur-sm left-0 top-0 font-light text-black' : 'hidden' }>
         <div>
           <div className={ edit ? 'rounded-t-xl bg-slate-500 h-12 w-full' : 'rounded-t-xl bg-blue-500 h-12 w-full' }>
             <button className='rounded-tr-xl float-right h-full w-12 text-white text-base' onClick={() => handleClose()}>
@@ -171,7 +173,7 @@ export default function ProductDetails({data}: Props) {
                 </>
               }
               <div className='row-span-2'>
-                <img src={`/img/Bild${data.picture+1}.png`} className='text-slate-400 rounded border border-slate-500 w-96 place-items-end' alt='product_picture' />
+                <img src={`/img/Bild${data.picture + 1}.png`} className='text-slate-400 rounded border border-slate-500 w-96 place-items-end' alt='product_picture' />
               </div>
             </div>
             <div className='flex gap-x-4 p-4 mt-6 text-base justify-end font-normal'>

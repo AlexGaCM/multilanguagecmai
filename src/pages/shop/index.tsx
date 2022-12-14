@@ -1,9 +1,9 @@
-import Navigation from '../components/Navigation'
-import Topbar from '../components/Topbar'
-import Translate from '../components/Translation'
+import Navigation from '../../components/Navigation'
+import Topbar from '../../components/Topbar'
+import Translate from '../../components/Translation'
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import AddProductButton from "../components/AddProductButton";
-import ProductList from '../components/ProductList'
+import AddProductButton from "../../components/AddProductButton";
+import ProductList from '../../components/ProductList'
 
 export async function getServerSideProps({ locale }) {
 
@@ -14,7 +14,7 @@ export async function getServerSideProps({ locale }) {
   }
 }
 
-export default function Shop() {
+export default function Index() {
 
   return (
     <>
