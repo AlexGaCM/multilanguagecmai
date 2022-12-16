@@ -116,7 +116,7 @@ export default function AddProductWindow() {
                   </div>
                 </div>
               </div>
-              <div className='float-right flex gap-x-4 mt-12 mr-6'>
+              <div className='float-right flex gap-x-4 mt-10 mr-6'>
                 <button
                   className='border-slate-400 hover:bg-slate-400 hover:text-white border-2 rounded-md h-10 w-24'
                   onClick={() => setOpen(!open)}
