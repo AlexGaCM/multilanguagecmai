@@ -63,8 +63,8 @@ export default function DialogButton({ buttonClassName, dialogClassName }: Props
           <Translate placeholder='dialog_open' />
         </button>
       </div>
-      <div className={ open ? 'absolute h-screen w-screen bg-slate-900 opacity-50 top-0' : 'hidden' }></div>
-      <div className={ open ? 'absolute h-screen w-screen top-0 backdrop-blur-sm' : 'hidden' }>
+      <div className={ open ? 'absolute h-screen w-screen bg-slate-900 opacity-50 top-0 z-10' : 'hidden' }></div>
+      <div className={ open ? 'absolute h-screen w-screen top-0 backdrop-blur-sm z-10' : 'hidden' }>
         <div className='flex desktop:mt-[15%] laptop:mt-[10%] justify-center place-content-center'>
           <div className={ open ? dialogClassName : 'hidden' }>
             <div className="rounded-t-xl bg-blue-500 h-12 w-full">

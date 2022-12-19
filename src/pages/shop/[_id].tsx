@@ -1,46 +1,41 @@
 import { queryClient } from '../_app'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Navigation from '../../components/Navigation'
 import Topbar from '../../components/Topbar'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { Product } from '../../storage/storage'
 
-export async function getStaticPaths() {
-  const products = await fetch('http://localhost:3000/api/callProducts').then(res => res.json())
-
-  return {
-    paths: products.map(product => {
-      const productID = product._id
-      return {
-        params: {
-          _id: productID
-        }
-      }
-    }),
-    fallback: false
-  }
-}
-
-export async function getStaticProps(context) {
-  const data = await fetch('http://localhost:3000/api/callProducts').then(res => res.json())
-  const id = context.params._id
+export async function getServerSideProps({ locale }) {
 
   return {
     props: {
-      data: data,
-      id: id,
+      ...(await serverSideTranslations(locale, ['common'], null )),
     }
   }
 }
 
-export default function Product(props) {
+export default function ProductDetail() {
 
-  const product = props.data.find(obj => {
-    return obj._id === props.id
+  const [product, setProduct] = useState<Product>({
+    _id: '',
+    name: '',
+    price: 999,
+    desc: '',
+    picture: 999
   })
-
   const [edit, setEdit] = useState(false)
   const [warning, setWarning] = useState({warning1: false, warning2: false})
   const router = useRouter()
+
+  useEffect(() => {
+    fetch('../api/getProductById', {
+    method: 'POST',
+    body: router.query._id as string
+  })
+    .then(res => res.json())
+    .then(res => setProduct(res))
+  }, [])
 
   const store = {
     _id: product._id,

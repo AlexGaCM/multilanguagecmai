@@ -62,8 +62,8 @@ export default function AddProductWindow() {
 
   return(
     <>
-      <div className={ open ? 'fixed h-screen w-screen bg-slate-900 opacity-50 top-0' : 'hidden' }></div>
-      <div className={ open ? 'fixed h-screen w-screen top-0 backdrop-blur-sm' : 'hidden' }>
+      <div className={ open ? 'fixed h-screen w-screen bg-slate-900 opacity-50 top-0 z-10' : 'hidden' }></div>
+      <div className={ open ? 'fixed h-screen w-screen top-0 backdrop-blur-sm z-10' : 'hidden' }>
         <div className='flex desktop:mt-[13%] laptop:mt-[6%] justify-center place-content-center'>
           <div>
             <div className='rounded-t-xl bg-blue-500 h-12 w-full'>

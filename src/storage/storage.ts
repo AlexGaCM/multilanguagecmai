@@ -1,13 +1,15 @@
 import create from 'zustand'
 
+export type Product = {
+  _id: string,
+  name: string,
+  price: any,
+  desc: string,
+  picture: any
+}
+
 type Storage = {
-  product: {
-    _id: string,
-    name: string,
-    price: any,
-    desc: string,
-    picture: any
-  },
+  product: Product,
   open: boolean,
   setProduct: (object) => void,
   setOpen: (boolean) => void
